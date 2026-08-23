@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🦅 AirDroid Clone — Panel Gratis</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial; background: #0a0a1a; color: #fff; padding: 20px; }
+        .container { max-width: 1200px; margin: auto; }
+        .card { background: #1a1a2e; padding: 20px; border-radius: 10px; margin: 10px 0; display: inline-block; width: 30%; }
+        .btn { background: #00ff88; color: #000; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        .btn:hover { background: #00cc66; }
+        .status { color: #ffaa00; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🦅 AirDroid Clone — Panel Gratis</h1>
+    <p>Selamat datang, Tuan Anzz. 100% gratis, 100% independen.</p>
+
+    <div id="status" class="status">📡 Menunggu koneksi...</div>
+
+    <div style="margin: 20px 0;">
+        <button class="btn" onclick="getDevices()">🔄 Refresh</button>
+        <button class="btn" onclick="generateCode()">🎫 Generate Kode</button>
+    </div>
+
+    <div id="codeResult" style="background: #111; padding: 15px; border-radius: 10px; margin: 10px 0;">
+        <p>Kode akses akan muncul di sini...</p>
+    </div>
+
+    <div id="deviceList" style="background: #111; padding: 15px; border-radius: 10px; margin: 10px 0;">
+        <h3>📱 Perangkat Terdaftar:</h3>
+        <ul id="devices"></ul>
+    </div>
+</div>
+
+<script>
+    const API = 'https://airdropclone.onrender.com'; // Ganti dengan URL backend lu
+
+    async function getDevices() {
+        const res = await fetch(`${API}/api/devices`);
+        const data = await res.json();
+        const list = document.getElementById('devices');
+        list.innerHTML = '';
+        data.devices.forEach(d => {
+            list.innerHTML += `<li>${d.name} — Kode: ${d.code} — IP: ${d.ip}</li>`;
+        });
+        document.getElementById('status').innerHTML = `✅ ${data.devices.length} perangkat terdaftar`;
+    }
+
+    async function generateCode() {
+        const res = await fetch(`${API}/api/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: prompt('Nama perangkat:') || 'Device' })
+        });
+        const data = await res.json();
+        document.getElementById('codeResult').innerHTML = `
+            <p style="color:#00ff88;">🎫 Kode Akses: <strong>${data.code}</strong></p>
+            <p>Kirim kode ini ke pengguna untuk login.</p>
+        `;
+        getDevices();
+    }
+
+    getDevices();
+</script>
+</body>
+</html>
