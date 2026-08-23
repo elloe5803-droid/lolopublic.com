@@ -25,3 +25,18 @@
 4. Akses `admin/login.php` → Login: `admin` / `123456`.
 
 ## 📁 Struktur Folder
+## 🔑 Login Default
+- **Username:** `admin`
+- **Password:** `123456`
+
+## 📦 Dependensi
+- PHP 7.4+
+- MySQL 5.7+
+- Apache / Nginx
+
+## 🛠️ Build APK (Android)
+Gunakan tool di folder `builder/`:
+```bash
+cd builder
+./build.sh
+
