@@ -103,4 +103,7 @@ app.post('/api/admin/generate-free', (req, res) => {
 
 app.use(express.static('public'));
 const PORT = process.env.PORT || 8080;
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+});
 app.listen(PORT, () => console.log(`🦅 Server di port ${PORT}`));
