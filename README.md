@@ -22,12 +22,12 @@
 1. Upload semua file ke hosting (PHP 7.4+).
 2. Import database `install.sql`.
 3. Ubah `config.php` sesuai database.
-4. Akses `admin/login.php` → Login: `admin` / `123456`.
+4. Akses `admin/login.php` → Login: 
 
 ## 📁 Struktur Folder
 ## 🔑 Login Default
-- **Username:** `admin`
-- **Password:** `123456`
+- **Username:** 
+- **Password:** `
 
 ## 📦 Dependensi
 - PHP 7.4+
